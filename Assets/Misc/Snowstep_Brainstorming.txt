@@ -1,0 +1,34 @@
+Snowsteps Brainstorming
+
+Der Spieler steuert einen Character in der 3rd Person Ansicht.
+
+Ziel des Spieles ist einen schützenden Platz zu finden, an dem der Character übernachten kann. (o.Ä.?)
+
+Der Character hat keine Möglichkeit sich zu orientieren. 
+Nur die Spuren die er im Schnee hinterlässt sind Anhaltspunkt wo er bereits war.
+
+Das Spiel findet in einem Labyrinth-artigen Wald statt.
+
+Mit der Zeit verliert der Character Körperwärme. Er kann die Körperwärme an bestimmten Punkten aufladen (optional?)
+Diese Aufladepunkte anzusteuern benötigt es ein Risiko.
+
+Die Spielfläche ist begrenzt. Abseits der Spielfläche friert der Character schneller, bis er am Rande der Spielfläche stirbt.
+
+Weiteres:
+Es wäre super, wenn der Spieler auch zum Erkunden eingeladen wird. 
+
+Was für Rewards kann es geben, wenn er absichtlich vom Weg abkommt? Rätsel? Wärme? 
+
+Klasse wären auch kleine Höhlen, in denen er unter kommen könnte. 
+Vielleicht sind das auch einfach die Anlaufpunkte für Wärme. 
+In den Höhlen könnten Ruinen auf ein Mysterium hindeuten, das der Spieler erforschen kann.
+
+Der Spieler geht durch Tiefschnee. 
+Das sollte bei der Animation (stapfend) berücksichtigt werden. 
+
+Ist der Spieler vielleicht ein Wikinger? Der sich seiner Männlichkeit stellen will? 
+Mysterium – Götter… etc.?
+Der Spieler sollte eine Taschenlampe / Laterne (Setting?) mit sich führen.
+
+Grafischer Stil? -> Handpainted 3D Modelle (Comic, Eher Lowpoly) / Shader, VFX > Realistisch.
+Siehe „Journey“
