@@ -458,7 +458,7 @@ MonoBehaviour:
   foot:
   - {fileID: 460797229}
   brushSize: 2
-  brushStrength: 1
+  brushStrength: 0.657
 --- !u!1 &1137874911
 GameObject:
   m_ObjectHideFlags: 0
@@ -742,7 +742,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: dfcdb273299d34842a4c4042148a6cb8, type: 2}
+  - {fileID: 2100000, guid: 9b4fb94ad2f844c75999c894068ae351, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -10,7 +10,7 @@ public class Tracks : MonoBehaviour {
 
     public Transform[] foot;
 
-    [Range(0, 2)] public float brushSize;
+    [Range(0, 500)] public float brushSize;
     [Range(0, 1)] public float brushStrength;
 
     int layerMask;
