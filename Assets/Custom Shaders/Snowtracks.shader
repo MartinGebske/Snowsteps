@@ -3,10 +3,14 @@
 		_Tess ("Tesselation", Range(1,32)) = 4
 		_SnowColor ("Snow Color", Color) = (1,1,1,1)
 		_SnowTex("Snow (RGB)", 2D) = "white" {}
-		_GroundColor("Ground Color", Color) = (1,1,1,1)
-		_GroundTex("Ground (RGB)", 2D) = "white" {}
+        _SnowNormal ("Snow Normal", 2D) = "bump"{}
+        _MetallicTex ("Metal Texture", 2D) = "white" {}
+        _GroundColor("Ground Color", Color) = (1,1,1,1)
+
+        _GroundTex("Ground (RGB)", 2D) = "white" {}
 		_Splat("SplatMap", 2D) = "black"{}
-	
+
+
 		_Displacement ("Displacement", Range(0,1.0)) = 0.3
 		_Glossiness ("Smoothness", Range(0,1)) = 0.5
 		_Metallic ("Metallic", Range(0,1)) = 0.0
@@ -53,12 +57,15 @@
 		sampler2D _GroundTex;
 		fixed4 _GroundColor;
 		sampler2D _SnowTex;
+        sampler2D _SnowNormal;
 		fixed4 _SnowColor;
+        sampler2D _MetallicTex;
 
 		struct Input {
 			float2 uv_GroundTex;
 			float2 uv_SnowTex;
 			float2 uv_Splat;
+            float2 uv_SnowNormal;
 		};
 
 		half _Glossiness;
@@ -79,13 +86,14 @@
 
 			// Lerp between Snow and Ground by an amount
 			fixed4 c = lerp(tex2D(_SnowTex, IN.uv_SnowTex) * _SnowColor, tex2D(_GroundTex, IN.uv_GroundTex) * _GroundColor, amount);
-
+            fixed4 metal = tex2D(_MetallicTex, IN.uv_GroundTex);
 			
 			//fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
 			o.Albedo = c.rgb;
+            o.Normal = UnpackNormal(tex2D(_SnowNormal, IN.uv_SnowNormal));
 			// Metallic and smoothness come from slider variables
-			o.Metallic = _Metallic;
-			o.Smoothness = _Glossiness;
+			o.Metallic = metal.r * _Metallic;
+			o.Smoothness = metal.a * _Glossiness;
 			o.Alpha = c.a;
 		}
 		ENDCG
