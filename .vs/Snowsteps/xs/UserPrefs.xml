@@ -1,11 +1,8 @@
 ﻿<Properties StartupConfiguration="{79CE1988-A7A0-3EE0-88D7-3B96A1B42AD3}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Custom Shaders/MobileMetalEmissive.shader">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Gameplay/PlaceWorld.cs">
     <Files>
-      <File FileName="Assets/Custom Shaders/DrawTracks.shader" Line="9" Column="45" />
-      <File FileName="Assets/Scripts/Graphics/Tracks.cs" Line="13" Column="18" />
-      <File FileName="Assets/Custom Shaders/Snowtracks.shader" Line="95" Column="36" />
-      <File FileName="Assets/Custom Shaders/MobileMetalEmissive.shader" Line="4" Column="12" />
+      <File FileName="Assets/Scripts/Gameplay/PlaceWorld.cs" Line="15" Column="26" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
