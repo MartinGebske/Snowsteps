@@ -14,6 +14,9 @@
 		_Displacement ("Displacement", Range(0,1.0)) = 0.3
 		_Glossiness ("Smoothness", Range(0,1)) = 0.5
 		_Metallic ("Metallic", Range(0,1)) = 0.0
+
+         _EmColor ("Emission Color", Color) = (1,1,1,1)
+        _EmStrength ("Emission Strength", Range(0,1)) = 0.5
 	}
 	SubShader {
 		Tags { "RenderType"="Opaque" }
@@ -45,6 +48,8 @@
 
 		sampler2D _Splat;
 		float _Displacement;
+        fixed4 _EmColor;
+        half _EmStrength;
 
 		void disp(inout appdata v)
 		{
@@ -95,6 +100,7 @@
 			o.Metallic = metal.r * _Metallic;
 			o.Smoothness = metal.a * _Glossiness;
 			o.Alpha = c.a;
+                        o.Emission = _EmColor * _EmStrength;
 		}
 		ENDCG
 	}
