@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33246449378923864}
   - component: {fileID: 23521791641241930}
   - component: {fileID: 135007452076591730}
+  - component: {fileID: 114311827903459008}
   m_Layer: 0
   m_Name: bigSphere
   m_TagString: POI
@@ -57,7 +58,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 84f5ac02a3a60494ba4024065a020e09, type: 2}
+  - {fileID: 2100000, guid: da059d27bc0094c05a16260f112ce50a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -84,6 +85,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1119068743166400}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &114311827903459008
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1119068743166400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfa988a9cd25345999ae6e4aa39abb77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AvailableMaterials:
+  - {fileID: 2100000, guid: dc413091aa2694ef9a38d2c2735b4642, type: 2}
+  - {fileID: 2100000, guid: da059d27bc0094c05a16260f112ce50a, type: 2}
+  - {fileID: 2100000, guid: 84f5ac02a3a60494ba4024065a020e09, type: 2}
 --- !u!135 &135007452076591730
 SphereCollider:
   m_ObjectHideFlags: 1

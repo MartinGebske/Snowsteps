@@ -43,6 +43,8 @@ public class PlaceWorld : MonoBehaviour
 
         SetGoal();
         SetHeatingPoints();
+
+        ChangeMat();
     }
 
     void SetGoal()
