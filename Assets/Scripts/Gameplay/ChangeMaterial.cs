@@ -24,19 +24,23 @@ public class ChangeMaterial : MonoBehaviour {
 	public void InitMatChange()
     {
         int lastMaterialId = PlayerPrefs.GetInt("LastMaterialId", 0);
-        print("last mat id " + lastMaterialId);
+       // print("last mat id " + lastMaterialId);
 
    
 
-        if(lastMaterialId > AvailableMaterials.Length -1)
+        if(lastMaterialId == AvailableMaterials.Length -1)
         {
-            PlayerPrefs.SetInt("LastMaterialId",0);
-    
+            PlayerPrefs.SetInt("LastMaterialId",-1);
+            ChangeSpecificMaterial(0);
+            PlayerPrefs.SetInt("LastMaterialId", 0);
+            return;
         }
         else{
+
+
             int newID = lastMaterialId += 1;
 
-        PlayerPrefs.SetInt("LastMaterialId", newID); 
+            PlayerPrefs.SetInt("LastMaterialId", newID); 
 
         }
          
@@ -47,7 +51,7 @@ public class ChangeMaterial : MonoBehaviour {
 
 	void ChangeSpecificMaterial(int mat)
     {
-        print(rend);
+        print("das kommt an: " + mat);
         if(mat <= AvailableMaterials.Length -1){
             rend.material = AvailableMaterials[mat];
         }
