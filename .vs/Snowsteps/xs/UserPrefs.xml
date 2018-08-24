@@ -1,8 +1,9 @@
 ﻿<Properties StartupConfiguration="{79CE1988-A7A0-3EE0-88D7-3B96A1B42AD3}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Gameplay/PlaceWorld.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Gameplay/ChangeMaterial.cs">
     <Files>
-      <File FileName="Assets/Scripts/Gameplay/PlaceWorld.cs" Line="15" Column="26" />
+      <File FileName="Assets/Scripts/Gameplay/PlaceWorld.cs" Line="107" Column="5" />
+      <File FileName="Assets/Scripts/Gameplay/ChangeMaterial.cs" Line="7" Column="26" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

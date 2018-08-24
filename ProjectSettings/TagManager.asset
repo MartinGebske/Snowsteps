@@ -6,7 +6,7 @@ TagManager:
   tags:
   - Fire
   - GoalPosition
-  - Goal
+  - POI
   layers:
   - Default
   - TransparentFX
