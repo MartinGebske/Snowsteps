@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlaceWorld : MonoBehaviour {
+public class PlaceWorld : MonoBehaviour
+{
 
     [Header("Main Goal")]
     public GameObject goal;
@@ -16,58 +17,89 @@ public class PlaceWorld : MonoBehaviour {
     int goalId;
     int storyPointId;
 
-	void Start () {
-        SetGoal();
-        SetHeatingPoints();
+    void Start()
+    {
+        InitRandomization();
     }
 
 
-	void Update () {
-        if(Input.GetKeyUp(KeyCode.G))
+    void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.G))
         {
-            SetGoal();
-            SetHeatingPoints();
+            InitRandomization();
         }
-        if(Input.GetKeyUp(KeyCode.D))
+        if (Input.GetKeyUp(KeyCode.D))
         {
             PlayerPrefs.DeleteAll();
             print("PlayerPrefs Deleted");
         }
-	}
+    }
 
-#region Handle Goals
-
-    void SetGoal()
+    void InitRandomization()
     {
         ClearPOIs();
         ClearGoals();
 
+        SetGoal();
+        SetHeatingPoints();
+    }
 
-        int lastId = PlayerPrefs.GetInt("LastGoal",0);
+    void SetGoal()
+    {
+        int lastId = PlayerPrefs.GetInt("LastGoal", 0);
 
         while (goalId == lastId)
         {
             goalId = GenerateRandomInt(0, goalTransforms.Length);
         }
 
-        PlayerPrefs.SetInt("LastGoal",goalId);
+        PlayerPrefs.SetInt("LastGoal", goalId);
 
-        GameObject newGoal = Instantiate(goal, goalTransforms[goalId].transform.position,Quaternion.identity);
+        GameObject newGoal = Instantiate(goal, goalTransforms[goalId].transform.position, Quaternion.identity);
         newGoal.transform.parent = goalTransforms[goalId].transform;
-        print("goal is created at " + goalId);
     }
 
+    void SetHeatingPoints()
+    {
+        int lastStoryPointId = PlayerPrefs.GetInt("LastStoryPoint", 0);
+
+        while (storyPointId == lastStoryPointId)
+        {
+            storyPointId = GenerateRandomInt(0, heatingPoints.Length);
+        }
+
+        PlayerPrefs.SetInt("LastStoryPoint", storyPointId);
+
+        // TODO: discard some transforms from array to get more variations
+
+        for (int i = 0; i < heatingPoints.Length; i++)
+        {
+            if (i != storyPointId)
+            {
+                GameObject newHeatingPoint = Instantiate(heatingPoint, heatingPoints[i].transform.position, Quaternion.identity);
+                newHeatingPoint.transform.parent = heatingPoints[i].transform;
+            }
+
+            if (i == storyPointId)
+            {
+                GameObject newStoryPoint = Instantiate(storyPoint, heatingPoints[i].transform.position, Quaternion.identity);
+                newStoryPoint.transform.parent = heatingPoints[i].transform;
+            }
+        }
+    }
+
+    #region TidyUp
     void ClearPOIs()
     {
         GameObject[] currentPOIs = GameObject.FindGameObjectsWithTag("POI");
 
-        if(currentPOIs != null)
+        if (currentPOIs != null)
         {
             foreach (GameObject p in currentPOIs)
             {
                 Destroy(p);
-            } 
-
+            }
         }
     }
 
@@ -79,58 +111,22 @@ public class PlaceWorld : MonoBehaviour {
         {
             Destroy(g);
         }
-
     }
+    #endregion
 
-#endregion
-
-
-    void SetHeatingPoints()
+    void ChangeMat()
     {
-        ClearPOIs();
-
-        int lastStoryPointId = PlayerPrefs.GetInt("LastStoryPoint", 0);
-
-        while (storyPointId == lastStoryPointId)
-        {
-            storyPointId = GenerateRandomInt(0, heatingPoints.Length);
-        }
-
-        PlayerPrefs.SetInt("LastStoryPoint", storyPointId);
-       // print("story Point is: " + storyPointId);
-
-
-        // TODO: discard some transforms from array to get more variations
-
-        // Initialize Heating Points
-        for (int i = 0; i < heatingPoints.Length; i++)
-        {
-            if(i != storyPointId)
-            {
-                GameObject newHeatingPoint = Instantiate(heatingPoint, heatingPoints[i].transform.position, Quaternion.identity);
-                newHeatingPoint.transform.parent = heatingPoints[i].transform;
-            //    print("heating Point created at: " + i); 
-            }
-
-            if(i == storyPointId)
-            {
-                GameObject newStoryPoint = Instantiate(storyPoint, heatingPoints[i].transform.position, Quaternion.identity);
-                newStoryPoint.transform.parent = heatingPoints[i].transform;
-              //  print("StoryPoint created at: " + i);
-            }
-        }
-
         ChangeMaterial cMat;
         cMat = storyPoint.GetComponent<ChangeMaterial>();
-        if(cMat != null)
+        if (cMat != null)
         {
             cMat.InitMatChange();
-          //  print("mat changed");
+              print("mat changed");
         }
-        else{
+        else
+        {
             Debug.LogError("InitMatChange not available please enable ChangeMaterial on target");
         }
-    
     }
 
     int GenerateRandomInt(int min, int max)
