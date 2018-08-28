@@ -211,13 +211,15 @@ MonoBehaviour:
   storyPoint: {fileID: 1119068743166400, guid: b79ba2e79b6234ce6b6fb39d840e4f0d, type: 2}
   heatingPoint: {fileID: 1971605746079466, guid: 6d7dcb0b3e85d4447ba9b1081428a77f,
     type: 2}
+  dummyPoint: {fileID: 0}
   heatingPoints:
-  - {fileID: 921233637}
-  - {fileID: 228364253}
-  - {fileID: 748376606}
-  - {fileID: 1194220079}
-  - {fileID: 713177507}
-  - {fileID: 500665917}
+  - {fileID: 921233636}
+  - {fileID: 228364252}
+  - {fileID: 748376605}
+  - {fileID: 1194220078}
+  - {fileID: 713177506}
+  - {fileID: 500665916}
+  disabledHeatPoints: 2
 --- !u!4 &403742839
 Transform:
   m_ObjectHideFlags: 0

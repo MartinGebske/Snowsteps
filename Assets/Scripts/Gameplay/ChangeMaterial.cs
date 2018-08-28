@@ -7,6 +7,16 @@ public class ChangeMaterial : MonoBehaviour {
     public Material[] AvailableMaterials;
     Renderer rend;
 
+	private void OnEnable()
+	{
+        PlaceWorld.OnSetupInitializedEvent += this.InitMatChange;
+	}
+
+	private void OnDisable()
+	{
+        PlaceWorld.OnSetupInitializedEvent -= this.InitMatChange;
+	}
+
 	private void Awake()
 	{
         rend = GetComponent<Renderer>();
@@ -17,16 +27,12 @@ public class ChangeMaterial : MonoBehaviour {
         {
             PlayerPrefs.SetInt("LastMaterialId",0);
             print("material Deleted");
-
         }
 	}
 
 	public void InitMatChange()
     {
         int lastMaterialId = PlayerPrefs.GetInt("LastMaterialId", 0);
-       // print("last mat id " + lastMaterialId);
-
-   
 
         if(lastMaterialId == AvailableMaterials.Length -1)
         {
@@ -36,27 +42,21 @@ public class ChangeMaterial : MonoBehaviour {
             return;
         }
         else{
-
-
             int newID = lastMaterialId += 1;
 
             PlayerPrefs.SetInt("LastMaterialId", newID); 
-
         }
          
         ChangeSpecificMaterial(lastMaterialId);
-
-
     }
 
 	void ChangeSpecificMaterial(int mat)
     {
-        print("das kommt an: " + mat);
         if(mat <= AvailableMaterials.Length -1){
+            if(rend == null){
+                rend = GetComponent<Renderer>();
+            }
             rend.material = AvailableMaterials[mat];
         }
-     
     }
-
-
 }

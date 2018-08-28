@@ -12,10 +12,14 @@ public class PlaceWorld : MonoBehaviour
     [Header("Heating Points")]
     public GameObject storyPoint;
     public GameObject heatingPoint;
-    public Transform[] heatingPoints;
+    public List<GameObject> heatingPoints = new List<GameObject>();
+    public int disabledHeatPoints = 2;
 
     int goalId;
     int storyPointId;
+
+    public delegate void OnSetup();
+    public static event OnSetup OnSetupInitializedEvent;
 
     void Start()
     {
@@ -25,10 +29,6 @@ public class PlaceWorld : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.G))
-        {
-            InitRandomization();
-        }
         if (Input.GetKeyUp(KeyCode.D))
         {
             PlayerPrefs.DeleteAll();
@@ -44,8 +44,13 @@ public class PlaceWorld : MonoBehaviour
         SetGoal();
         SetHeatingPoints();
 
-        ChangeMat();
+        // sub = ChangeMaterial
+        if(OnSetupInitializedEvent != null){
+            OnSetupInitializedEvent();
+        }
     }
+
+    #region Setup
 
     void SetGoal()
     {
@@ -68,14 +73,14 @@ public class PlaceWorld : MonoBehaviour
 
         while (storyPointId == lastStoryPointId)
         {
-            storyPointId = GenerateRandomInt(0, heatingPoints.Length);
+            storyPointId = GenerateRandomInt(0, heatingPoints.Count);
         }
 
         PlayerPrefs.SetInt("LastStoryPoint", storyPointId);
 
-        // TODO: discard some transforms from array to get more variations
+        RandomDeleteHeatPoints();
 
-        for (int i = 0; i < heatingPoints.Length; i++)
+        for (int i = 0; i < heatingPoints.Count; i++)
         {
             if (i != storyPointId)
             {
@@ -90,6 +95,8 @@ public class PlaceWorld : MonoBehaviour
             }
         }
     }
+
+    #endregion
 
     #region TidyUp
     void ClearPOIs()
@@ -116,18 +123,13 @@ public class PlaceWorld : MonoBehaviour
     }
     #endregion
 
-    void ChangeMat()
+    #region Randomization
+
+    void RandomDeleteHeatPoints()
     {
-        ChangeMaterial cMat;
-        cMat = storyPoint.GetComponent<ChangeMaterial>();
-        if (cMat != null)
+        for (int del = 0; del < disabledHeatPoints; del++)
         {
-            cMat.InitMatChange();
-              print("mat changed");
-        }
-        else
-        {
-            Debug.LogError("InitMatChange not available please enable ChangeMaterial on target");
+            heatingPoints.RemoveAt(Random.Range(0, heatingPoints.Count));
         }
     }
 
@@ -135,4 +137,6 @@ public class PlaceWorld : MonoBehaviour
     {
         return Random.Range(min, max);
     }
+
+    #endregion
 }
