@@ -1,6 +1,6 @@
 ﻿Shader "Custom/Snowtracks" {
 	Properties {
-		_Tess ("Tesselation", Range(1,32)) = 4
+		_Tess ("Tesselation", Range(1,256)) = 4
 		_SnowColor ("Snow Color", Color) = (1,1,1,1)
 		_SnowTex("Snow (RGB)", 2D) = "white" {}
         _SnowNormal ("Snow Normal", 2D) = "bump"{}
