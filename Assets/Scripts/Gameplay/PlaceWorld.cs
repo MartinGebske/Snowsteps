@@ -29,7 +29,7 @@ public class PlaceWorld : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.D))
+        if (Input.GetKeyUp(KeyCode.Escape))
         {
             PlayerPrefs.DeleteAll();
             print("PlayerPrefs Deleted");
